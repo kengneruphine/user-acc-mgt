@@ -1,4 +1,4 @@
-import express from 'express';
+import { Router } from 'express';
 import {
   createNewAccount,
   loginUser,
@@ -8,7 +8,7 @@ import {
 import verifyToken from '@src/middleware/verifyToken';
 import multer from 'multer';
 
-const authRouter = express.Router();
+const authRouter = Router();
 const upload = multer().single('image');
 
 authRouter.post('/register',upload, verifyToken, createNewAccount);

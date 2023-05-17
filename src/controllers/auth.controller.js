@@ -41,14 +41,15 @@ export const createNewAccount = async (req, res) => {
       }
     }
     
-    const token = await createUsr(payload);
-    logger.info(`Token during account creation is ${token}`);
+    const returnDetails = await createUsr(payload);
+    logger.info(`Token during account creation is ${returnDetails.token}`);
 
     return successResponse(
       res,
       201,
       'You have successfully created an account',
-      token,
+      returnDetails.token,
+      returnDetails.userAccount
     );
   } catch (error) {
     return errorResponse(res, error.message, 500);

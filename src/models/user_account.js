@@ -1,6 +1,5 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, mongoose } from 'mongoose';
 import handleCastError from '../plugins/handleCastError';
-import { userSchema} from './user'
 
 const userAccountSchema = Schema({
   identificationNumber: {
@@ -16,7 +15,10 @@ const userAccountSchema = Schema({
     default: 'unverified',
     enum:['unverified','pending verification','verified']
   },
-  user:userSchema
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }
 },{timestamps:true});
 
 userAccountSchema.plugin(handleCastError);

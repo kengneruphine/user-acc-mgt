@@ -89,4 +89,4 @@ userSchema.pre('save', async function updatePassword(next) {
   };
   
   const User = model('User', userSchema);
-  export default { User, userSchema};
+  export default User;
