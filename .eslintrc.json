@@ -1,0 +1,16 @@
+{
+    "extends": [
+      "airbnb",
+      "plugin:import/recommended"
+    ],
+    "ignorePatterns": ["**/node_modules"],
+    "settings": {
+      "import/resolver": {
+        "babel-module": { "allowExistingDirectories": true }
+      }
+    },
+    "rules": {
+      "func-names": ["error", "as-needed"]
+    }
+  }
+  

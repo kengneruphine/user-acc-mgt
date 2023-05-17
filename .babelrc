@@ -1,0 +1,17 @@
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": [
+      ["module-resolver", {
+        "alias": {
+          "@src": "./src",
+          "@utils": "./src/utils",
+          "@config": "./src/config",
+          "@services": "./src/services"
+        }
+      }],
+      "@babel/transform-runtime",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
+  }
+  
