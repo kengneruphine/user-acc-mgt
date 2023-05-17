@@ -13,9 +13,9 @@ export default {
     redis_url: process.env.REDIS_URL,
     domain: process.env.DOMAIN,
     // IMAGEKIT_ENV: process.env.IMAGEKIT_ENV,
-    // IMAGEKIT_PUBLIC_KEY: process.env.IMAGEKIT_PUBLIC_KEY,
-    // IMAGEKIT_PRIVATE_KEY: process.env.IMAGEKIT_PRIVATE_KEY,
-    // IMAGEKIT_URL_ENDPOINT: process.env.IMAGEKIT_URL_ENDPOINT,
-    // IMAGEKIT_APP_FOLDER: process.env.IMAGEKIT_APP_FOLDER,
+    IMAGEKIT_PUBLIC_KEY: process.env.IMAGEKIT_PUBLIC_KEY,
+    IMAGEKIT_PRIVATE_KEY: process.env.IMAGEKIT_PRIVATE_KEY,
+    IMAGEKIT_URL_ENDPOINT: process.env.IMAGEKIT_URL_ENDPOINT,
+    IMAGEKIT_APP_FOLDER: process.env.IMAGEKIT_APP_FOLDER,
   };
   

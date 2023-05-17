@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { connectToDB} from './config/db';
+import apiRouter from './routes/index';
 
 const app = express();
 const message = 'User Account Management';
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.status(200).send({ message }));
+app.use('/api', apiRouter);
 
 // handling non existing routes
 app.use((req, res) => {
