@@ -77,7 +77,7 @@ export const forgotPass = catchAsyncError(async (email, redirectUrl) => {
 });
 
 export const resetPass = catchAsyncError(async (resetToken, passwordResetRecord, password) => {
-   const {expiresAt} = passwordResetRecord[0];
+   const { expiresAt} = passwordResetRecord[0];
    const userId = passwordResetRecord[0].userId;
    const tokenFromDatabase = passwordResetRecord[0].resetToken;
 
@@ -92,13 +92,17 @@ export const resetPass = catchAsyncError(async (resetToken, passwordResetRecord,
       //success
       const user = await User.findOne({ _id: userId });
       //hash the new provided password and stored it in the database
-      await user.updatePassword(password);
-      await user.save();
+      const newPassword = await user.updatePassword(password);
+      const update = {password : newPassword};
+      await User.findByIdAndUpdate(userId, update, {
+        new: true,
+      });
+
       await PasswordReset.deleteMany({ userId });
 
       const mailOptions = {
         from: env.domain_email,
-        to: email,
+        to: user.email,
         subject: 'Password Reset Succesfully',
         html: `<p>Password Reset Successfully. You can now login</p>`,
       };
