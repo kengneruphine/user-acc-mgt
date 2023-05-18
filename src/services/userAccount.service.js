@@ -1,6 +1,8 @@
 import { catchAsyncError } from '@utils/responseHandler';
 import userAccountModel from '../models/user_account';
-import user from '../models/user';
+import User from '../models/user';
+import env from '../config/env';
+import transporter from '../config/sendEmail/nodemail';
 
 export const populateUserParams = {
     path: 'user',
@@ -10,7 +12,7 @@ export const populateUserParams = {
 
 export const uploadIdentificationDocument = catchAsyncError(async (userAccountId, update) =>{
     update.accountStatus = "pending verification";
-    documents = await userAccountModel.findByIdAndUpdate(
+    let documents = await userAccountModel.findByIdAndUpdate(
         userAccountId,
         { $set: update},
         { new: true },
@@ -49,11 +51,14 @@ export const getAllUserAccountDocuments = catchAsyncError(async () => {
       });
       await userAccount.populate(populateUserParams);
 
-      //change the status of the user profile to active so that the user can login
-      await user.findByIdAndUpdate(userAccount.user._id, {
-        active: true
-      },{
-        new:true,
-      });
+      //send an email to notify the user
+      const user = await User.findById({ _id: userAccount.user._id.toString() })
+      const mailOptions = {
+        from: env.domain_email,
+        to: user.email,
+        subject: 'Verify your email',
+        html: `<p>Your account has being verified successfully. You can now login</p>`,
+      };
+      await transporter.sendMail(mailOptions);
       return userAccount;
   })

@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import { connectToDB} from './config/db';
 import apiRouter from './routes/index';
 
@@ -11,7 +12,9 @@ connectToDB();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.status(200).send({ message }));
 app.use('/api', apiRouter);

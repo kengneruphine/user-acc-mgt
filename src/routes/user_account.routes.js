@@ -9,7 +9,7 @@ import {
   import multer from 'multer';
 
   const userAccountRouter = Router();
-  const upload = multer().single('image');
+  const upload = multer().single('idImage');
   
   userAccountRouter.get('/', getAllUserAccount);
   userAccountRouter.get('/:userAccountId', getUserAccount);

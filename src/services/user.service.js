@@ -20,7 +20,7 @@ export const editUser = catchAsyncError(async (userId, payload, user) => {
 
   if(update.dateOfBirth){
     //subtract from the current date to have the age
-    //const newAge =
+    const newAge =Math.floor((new Date() - new Date(dateOfBirth).getTime()) / 3.15576e+10)
     update = { ...update, age: newAge };
   }
 

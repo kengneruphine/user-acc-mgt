@@ -24,16 +24,16 @@ export const uploadDocuments = async (req, res) => {
         const imageUploadPayload = {
           file: req.file.buffer,
           fileName: req.file.originalname,
-          folder: `${env.IMAGEKIT_APP_FOLDER}/${env.IMAGEKIT_ENV}/USERACCOUNT`,
+          folder: `${env.IMAGEKIT_APP_FOLDER}/USERACCOUNT`,
         };
 
         const imageUrl = await imagekitUploadImage(imageUploadPayload);
 
         if (imageUrl) {
-          req.body.idImage = imageUrl;
+          body.idImage = imageUrl;
         }
       }
-      const uploadDoc = await uploadIdentificationDocument(userAccountId, req.body);
+      const uploadDoc = await uploadIdentificationDocument(userAccountId, body);
 
       return successResponse(
         res,
@@ -107,7 +107,7 @@ export const getAllUserAccount = async (req, res) => {
     try {
       const { userAccountId } = req.params;
   
-      const userAccount = await getTestimonialService(userAccountId);
+      const userAccount = await getUserAccountDocument(userAccountId);
   
       if (!userAccount) return errorResponse(res, 'user Account not found', 404);
   

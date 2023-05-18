@@ -2,18 +2,22 @@ import { Router } from 'express';
 import {
   createNewAccount,
   loginUser,
-  // forgotPassword,
-  // resetPasswordConfirmation,
+  forgotPassword,
+  resetPassword,
+  verifyCode,
+  resentVerificationCode
 } from '@src/controllers/auth.controller';
-import verifyToken from '@src/middleware/verifyToken';
 import multer from 'multer';
 
 const authRouter = Router();
-const upload = multer().single('image');
+const upload = multer().single('profileImage');
 
-authRouter.post('/register',upload, verifyToken, createNewAccount);
+authRouter.post('/register',upload, createNewAccount);
 authRouter.post('/login', loginUser);
-// authRouter.post('/forgot-password', forgotPassword);
-// authRouter.post('/reset-password-confirmation', resetPasswordConfirmation);
+authRouter.post('/forgot-password', forgotPassword);
+//authRouter.post('/reset-password-confirmation', resetPasswordConfirmation);
+authRouter.post('/reset-password', resetPassword);
+authRouter.post('/verify-code', verifyCode)
+authRouter.post('/resent-code', resentVerificationCode)
 
 export default authRouter;
