@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {
-  createNewAccount,
+  createNewUserProfile,
   loginUser,
   forgotPassword,
   resetPassword,
@@ -12,7 +12,7 @@ import multer from 'multer';
 const authRouter = Router();
 const upload = multer().single('profileImage');
 
-authRouter.post('/register',upload, createNewAccount);
+authRouter.post('/register',upload, createNewUserProfile);
 authRouter.post('/login', loginUser);
 authRouter.post('/forgot-password', forgotPassword);
 //authRouter.post('/reset-password-confirmation', resetPasswordConfirmation);

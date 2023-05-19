@@ -17,7 +17,7 @@ import {
   resentCode
 } from '../services/auth.service';
 
-export const createNewAccount = async (req, res) => {
+export const createNewUserProfile = async (req, res) => {
   try {
     const { body } = req;
     checkDateOfBirth(body.dateOfBirth, 'Date of Birth');
