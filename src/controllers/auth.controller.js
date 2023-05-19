@@ -78,7 +78,7 @@ export const loginUser = async (req, res) => {
       return errorResponse(res, 'User Account is unverified or it is not active', 400);
     }
     const token = await login(user, body);
-
+    logger.info(`Login success`);
     return successResponse(res, 200, 'You have successfully logged in.', token);
   } catch (error) {
     return errorResponse(res, error.message, 500);
@@ -116,6 +116,7 @@ export const resentVerificationCode = async(req, res) =>{
     if(result === 'success'){
       return successResponse(res, 200, 'Code resent successfully.');
     }
+    logger.info(`Code resent successfully`);
     
   }catch(error){
     return errorResponse(res, error.message, 500);

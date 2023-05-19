@@ -8,6 +8,7 @@ import bcrypt from 'bcrypt';
 import transporter from '../config/sendEmail/nodemail';
 import crypto from 'crypto';
 import PasswordReset from '../models/passwordReset';
+import logger from '../config/logger';
 
 export const createUsr = catchAsyncError(async (body) => {
   //store user profile in the user table
@@ -74,6 +75,7 @@ export const forgotPass = catchAsyncError(async (email, redirectUrl) => {
     await newPasswordReset.save();
     //send the email here
     await transporter.sendMail(mailOptions);
+    logger.info(`reset token created is ${resetToken}`);
 });
 
 export const resetPass = catchAsyncError(async (resetToken, passwordResetRecord, password) => {
@@ -137,6 +139,7 @@ const sentOTPVerificationCode = catchAsyncError(async ({ _id, email }) => {
     await newCodeVerification.save();
     //send the email here
     await transporter.sendMail(mailOptions);
+    logger.info(`verification code sent is  ${verificationCode}`);
 });
 
 export const codeVerification = catchAsyncError(
