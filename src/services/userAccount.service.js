@@ -56,7 +56,7 @@ export const getAllUserAccountDocuments = catchAsyncError(async () => {
       const mailOptions = {
         from: env.domain_email,
         to: user.email,
-        subject: 'Verify your email',
+        subject: 'User Account Verified Successfully',
         html: `<p>Your account has being verified successfully. You can now login</p>`,
       };
       await transporter.sendMail(mailOptions);
