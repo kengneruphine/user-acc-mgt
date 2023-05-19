@@ -18,6 +18,10 @@ export const getAllUsers = async (req, res) => {
 
 export const getAUser = async (req, res) => {
   try {
+    //check to make sure that the user only see the details of his account
+    if(req.user.id !== req.params.userId){
+      return errorResponse(res, 'User cannot see the user details', 400);
+    }
     const user = await getUser(req.params.userId);
     if (!user) {
       return errorResponse(res, 'User does not exist', 400);
