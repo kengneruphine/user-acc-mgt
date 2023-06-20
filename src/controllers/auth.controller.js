@@ -8,6 +8,7 @@ import UserAccount from '../models/user_account';
 import PasswordReset from '../models/passwordReset';
 import logger from '../config/logger';
 import UserOTPVerification from '../models/userOTPVerification';
+import { sign} from 'jsonwebtoken';
 import {
   createUsr,
   login,
@@ -73,9 +74,9 @@ export const loginUser = async (req, res) => {
       return errorResponse(res, 'User does not exist', 400);
     }
     //check if the user is active and user_account has being set to verified
-    const userAccount = await UserAccount.findById(user._id);
-    if (user.active === 'false' && !userAccount && userAccount !== "verified") {
-      return errorResponse(res, 'User Account is unverified or it is not active', 400);
+    const userAccount = await UserAccount.findOne({user: user._id});
+    if (userAccount.accountStatus == "unverified" && user.active !== 'false' ) {
+      return errorResponse(res, 'You cannot login,User Account is unverified or your user profile is not active', 400);
     }
     const token = await login(user, body);
     logger.info(`Login success`);
@@ -158,3 +159,19 @@ export const resetPassword = async (req, res) => {
     return errorResponse(res, error.message, 500);
   }
 };
+
+// to logout, we have to delete the JWT token from the backend
+//replace the Jwt token from headers with an empty string and which is going to expire in 5 second
+//since the token is not stored in the database
+//Here, the token will be cleared from the localStorage in the client application
+export const logoutUser = async (req, res) =>{
+  const authHeader = req.headers["authorization"];
+  sign(authHeader, "", {expiresIn: 5}, (logout, err) =>{
+    if (logout) {
+      return successResponse(res, 200, 'You have been logged out successfully');
+    } 
+  else {
+    return errorResponse(res, "Error occured", 500);
+    }
+  })
+}

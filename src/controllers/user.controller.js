@@ -34,6 +34,10 @@ export const getAUser = async (req, res) => {
 
 export const editAUser = async (req, res) => {
   try {
+    //check to make sure that the user only edit his account
+    if(req.user.id !== req.params.userId){
+      return errorResponse(res, 'User cannot edit this account', 400);
+    }
     const update = req.body;
     const userExist = await User.findById(req.params.userId);
     if (!userExist) {
