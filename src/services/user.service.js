@@ -1,5 +1,6 @@
 import UserModel from '@models/user';
 import { catchAsyncError } from '@utils/responseHandler';
+import UserAccount from '@models/user_account';
 
 export const getUsers = catchAsyncError(async () => {
   const users = await UserModel.find().select('-password');
@@ -7,7 +8,12 @@ export const getUsers = catchAsyncError(async () => {
 });
 
 export const getUser = catchAsyncError(async (userId) => {
-  const user = await UserModel.findById(userId).select('-password');
+  const userFound = await UserModel.findById(userId).select('-password');
+  const userAccount = await UserAccount.findOne({user: userId}).select('-_id').select('-user');
+  const user= {
+    userFound,
+    userAccount
+  } 
   return user;
 });
 
