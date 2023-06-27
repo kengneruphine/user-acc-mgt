@@ -1,6 +1,7 @@
 import { errorResponse, successResponse } from '@utils/responseHandler';
 import env from '../config/env';
 import { imagekitUploadImage } from '../services/upload';
+import checkImageExtension from '../utils/checkImageExtension';
 import logger from '../config/logger';
 import { userAccountValidation } from '@utils/validation';
 import {
@@ -21,6 +22,7 @@ export const uploadDocuments = async (req, res) => {
     const userAccount = await getUserAccountDocument(userAccountId);
     if (userAccount) {
       if (req.file) {
+        checkImageExtension(req.file, 'The uploaded identification image');
         const imageUploadPayload = {
           file: req.file.buffer,
           fileName: req.file.originalname,

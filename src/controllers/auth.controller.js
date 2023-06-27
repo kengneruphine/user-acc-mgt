@@ -1,5 +1,6 @@
 import { errorResponse, successResponse } from '@utils/responseHandler';
 import checkDateOfBirth from '@utils/checkDateOfBirth';
+import checkImageExtension from '../utils/checkImageExtension';
 import { registerValidation, loginValidation,passwordResetRequest } from '@utils/validation';
 import env from '../config/env';
 import { imagekitUploadImage } from '../services/upload';
@@ -36,6 +37,7 @@ export const createNewUserProfile = async (req, res) => {
     payload.age = age;
 
     if (req.file) {
+      checkImageExtension(req.file, 'The uploaded profile image');
       const imageUploadPayload = {
         file: req.file.buffer,
         fileName: req.file.originalname,
