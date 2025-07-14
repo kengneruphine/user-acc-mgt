@@ -1,5 +1,5 @@
 # user-acc-mgt
-User account management
+User Account Management
 
 This repository contains the backend implementation of the user account management for a web application.
 
@@ -32,4 +32,9 @@ It contains the endpoints which can allow the following operations
 
 
 ### API documentation 
-- The APIs were tested and documented with Postman and they are available https://documenter.getpostman.com/view/4171874/2s93kz7RXf
+- The APIs were tested and documented with Postman, and they are available https://documenter.getpostman.com/view/4171874/2s93kz7RXf
+
+### Running the scaled version of the application
+- This application has been scaled using the node:cluster module, where worker processes are forked based on the number of cpus available from the main process
+- Run the scale version using the cmd `node src/cluster.js`
+- You can run a load test using the cmd `npx loadtest http://localhost:5000/` before and after scaling the application to see how the application handled an increased amount of requests after scaling 
