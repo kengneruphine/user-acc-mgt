@@ -1,14 +1,14 @@
-import { sign } from '@utils/jwt';
-import { catchAsyncError } from '@utils/responseHandler';
-import User from '@models/user';
-import UserAccount from '@models/user_account';
-import UserOTPVerification from '../models/userOTPVerification';
-import env from '../config/env';
+import { sign } from '../utils/jwt.js';
+import { catchAsyncError } from '../utils/responseHandler.js';
+import User from '../models/user.js';
+import UserAccount from '../models/user_account.js';
+import UserOTPVerification from '../models/userOTPVerification.js';
+import env from '../config/env.js';
 import bcrypt from 'bcrypt';
-import transporter from '../config/sendEmail/nodemail';
+import transporter from '../config/sendEmail/nodemail.js';
 import crypto from 'crypto';
-import PasswordReset from '../models/passwordReset';
-import logger from '../config/logger';
+import PasswordReset from '../models/passwordReset.js';
+import logger from '../config/logger.js';
 
 export const createUsr = catchAsyncError(async (body) => {
   //store user profile in the user table

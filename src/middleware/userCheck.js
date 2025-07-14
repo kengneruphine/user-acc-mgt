@@ -1,5 +1,5 @@
-import User from '@src/models/user';
-import { errorResponse, catchAsyncError } from '@utils/responseHandler';
+import User from '../models/user.js';
+import { errorResponse, catchAsyncError } from '../utils/responseHandler.js';
 
 export const verifyUserExists = catchAsyncError(async (req, res, next) => {
   const { userId } = req.params;

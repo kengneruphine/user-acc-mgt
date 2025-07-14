@@ -1,5 +1,5 @@
 import { Schema, model} from 'mongoose';
-import handleCastError from '../plugins/handleCastError';
+import handleCastError from '../plugins/handleCastError.js';
 
 const userAccountSchema = Schema({
   identificationNumber: {

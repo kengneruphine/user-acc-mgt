@@ -1,8 +1,8 @@
-import { catchAsyncError } from '@utils/responseHandler';
-import userAccountModel from '../models/user_account';
-import User from '../models/user';
-import env from '../config/env';
-import transporter from '../config/sendEmail/nodemail';
+import { catchAsyncError } from '../utils/responseHandler.js';
+import userAccountModel from '../models/user_account.js';
+import User from '../models/user.js';
+import env from '../config/env.js';
+import transporter from '../config/sendEmail/nodemail.js';
 
 export const populateUserParams = {
     path: 'user',

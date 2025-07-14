@@ -1,8 +1,11 @@
-import { sign as _sign, verify as _verify } from 'jsonwebtoken';
-import env from '@config/env';
+//import { sign as _sign, verify as _verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import env from '../config/env.js';
 /**
  * @param payload
  */
+
+const {sign:_sign , verify:_verify} = jwt;
 
 export const sign = function (payload) {
   try {

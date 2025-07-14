@@ -1,6 +1,6 @@
-import UserModel from '@models/user';
-import { catchAsyncError } from '@utils/responseHandler';
-import UserAccount from '@models/user_account';
+import UserModel from '../models/user.js';
+import { catchAsyncError } from '../utils/responseHandler.js';
+import UserAccount from '../models/user_account.js';
 
 export const getUsers = catchAsyncError(async () => {
   const users = await UserModel.find().select('-password');

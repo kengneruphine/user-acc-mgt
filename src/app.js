@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { connectToDB} from './config/db';
-import apiRouter from './routes/index';
+import { connectToDB} from './config/db.js';
+import apiRouter from './routes/index.js';
 
 const app = express();
 const message = 'User Account Management';

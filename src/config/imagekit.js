@@ -1,7 +1,6 @@
 import 'dotenv/config';
-import env from './env';
-
-const ImageKit = require('imagekit');
+import env from './env.js';
+import ImageKit from 'imagekit';
 
 const imagekit = new ImageKit({
   publicKey: env.IMAGEKIT_PUBLIC_KEY,

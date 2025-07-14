@@ -1,7 +1,8 @@
 import 'dotenv/config';
 
 export default {
-    DB_URL: process.env.MONGODB_URL || 'mongodb://localhost:27017:usermanagement',
+   // DB_URL: process.env.MONGODB_URL || 'mongodb://localhost:27017/usermanagement',
+    DB_URL:"mongodb://localhost:27017/usermanagement",
     app_env: process.env.NODE_ENV || 'dev',
     port: process.env.PORT || 9000,
     salt_rounds: parseInt(process.env.salt_rounds, 10) || 10,

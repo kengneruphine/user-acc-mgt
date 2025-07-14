@@ -7,8 +7,8 @@ import {
   verifyCode,
   resentVerificationCode,
   logoutUser
-} from '@src/controllers/auth.controller';
-import verifyToken from '@src/middleware/verifyToken';
+} from '../controllers/auth.controller.js';
+import verifyToken from '../middleware/verifyToken.js';
 import multer from 'multer';
 
 const authRouter = Router();

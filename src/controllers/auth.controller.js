@@ -1,15 +1,15 @@
-import { errorResponse, successResponse } from '@utils/responseHandler';
-import checkDateOfBirth from '@utils/checkDateOfBirth';
-import checkImageExtension from '../utils/checkImageExtension';
-import { registerValidation, loginValidation,passwordResetRequest } from '@utils/validation';
-import env from '../config/env';
-import { imagekitUploadImage } from '../services/upload';
-import User from '@models/user';
-import UserAccount from '../models/user_account';
-import PasswordReset from '../models/passwordReset';
-import logger from '../config/logger';
-import UserOTPVerification from '../models/userOTPVerification';
-import { sign} from 'jsonwebtoken';
+import { errorResponse, successResponse } from '../utils/responseHandler.js';
+import checkDateOfBirth from '../utils/checkDateOfBirth.js';
+import checkImageExtension from '../utils/checkImageExtension.js';
+import { registerValidation, loginValidation} from '../utils/validation.js';
+import env from '../config/env.js';
+import { imagekitUploadImage } from '../services/upload.js';
+import User from '../models/user.js';
+import UserAccount from '../models/user_account.js';
+import PasswordReset from '../models/passwordReset.js';
+import logger from '../config/logger.js';
+import UserOTPVerification from '../models/userOTPVerification.js';
+import jwt from 'jsonwebtoken';
 import {
   createUsr,
   login,
@@ -17,7 +17,7 @@ import {
   resetPass,
   codeVerification,
   resentCode
-} from '../services/auth.service';
+} from '../services/auth.service.js';
 
 export const createNewUserProfile = async (req, res) => {
   try {
@@ -168,7 +168,7 @@ export const resetPassword = async (req, res) => {
 //Here, the token will be cleared from the localStorage in the client application
 export const logoutUser = async (req, res) =>{
   const authHeader = req.headers["authorization"];
-  sign(authHeader, "", {expiresIn: 5}, (logout, err) =>{
+  jwt.sign(authHeader, "", {expiresIn: 5}, (logout, err) =>{
     if (logout) {
       return successResponse(res, 200, 'You have been logged out successfully');
     } 

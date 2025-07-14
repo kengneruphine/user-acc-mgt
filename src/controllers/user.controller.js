@@ -1,11 +1,11 @@
-import User from '@models/user';
-import { errorResponse, successResponse } from '@utils/responseHandler';
+import User from '../models/user.js';
+import { errorResponse, successResponse } from '../utils/responseHandler.js';
 import {
   getUsers,
   getUser,
   editUser,
   deleteUser,
-} from '@services/user.service';
+} from '../services/user.service.js';
 
 export const getAllUsers = async (req, res) => {
   try {

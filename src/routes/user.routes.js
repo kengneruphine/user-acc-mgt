@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import verifyToken from '@src/middleware/verifyToken';
+import verifyToken from '../middleware/verifyToken.js';
 import {
   getAllUsers,
   getAUser,
   editAUser,
   deleteAUser,
-} from '@src/controllers/user.controller';
+} from '../controllers/user.controller.js';
 
 const userRouter = Router();
 

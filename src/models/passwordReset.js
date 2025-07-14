@@ -1,5 +1,5 @@
 import { Schema, model, mongoose } from 'mongoose';
-import handleCastError from '../plugins/handleCastError';
+import handleCastError from '../plugins/handleCastError.js';
 
 const PasswordResetSchema = new Schema({
     userId: String,

@@ -1,5 +1,5 @@
 import { hash as _hash, compare } from 'bcrypt';
-import config from '@config/env';
+import config from '../config/env.js';
 
 // eslint-disable-next-line consistent-return
 export const hashPassword = async (doc, plainPassword = undefined) => {

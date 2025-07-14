@@ -1,5 +1,5 @@
-import imagekit from '../config/imagekit';
-import env from '../config/env';
+import imagekit from '../config/imagekit.js';
+import env from '../config/env.js';
 
 export const imagekitUploadImage = async ({ file, fileName, folder }) => {
   let uploadUrl;

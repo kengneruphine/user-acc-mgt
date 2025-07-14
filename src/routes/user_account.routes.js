@@ -5,7 +5,7 @@ import {
     getUserAccount,
     updateUserAccountStatus,
     deleteUserAccount
-  } from '@src/controllers/userAccount.controller';
+  } from '../controllers/userAccount.controller.js';
   import multer from 'multer';
 
   const userAccountRouter = Router();

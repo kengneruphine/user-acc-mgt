@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 //import User from '@src/models/user';
-import logger from './logger';
-import env from './env';
+import logger from './logger.js';
+import env from './env.js';
 
 mongoose.Promise = global.Promise;
 const db = {

@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
-import handleCastError from '../plugins/handleCastError';
-import { hashPassword, validate } from '../plugins/auth';
+import handleCastError from '../plugins/handleCastError.js';
+import { hashPassword, validate } from '../plugins/auth.js';
 
 const userSchema = Schema(
   {

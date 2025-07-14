@@ -1,6 +1,7 @@
 //Adding mongoose plugin that handles cast errors to all models
 import mongoose from 'mongoose';
-import customizeErrorObj from '@src/AppError';
+import customizeErrorObj from '../AppError.js';
+
 
 const findQueries = ['find', 'findOne', 'findById', 'findByIdAndUpdate', 'findByIdAndDelete', 'findByIdAndRemove', 'create'];
 const handleCastError = (schema) => {

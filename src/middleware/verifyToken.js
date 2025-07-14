@@ -1,6 +1,6 @@
-import { errorResponse, catchAsyncError } from '@utils/responseHandler';
+import { errorResponse, catchAsyncError } from '../utils/responseHandler.js';
 import { decode } from 'jsonwebtoken';
-import env from '../config/env';
+import env from '../config/env.js';
 
 const verifyToken = catchAsyncError(async (req, res, next) => {
   // Verify token

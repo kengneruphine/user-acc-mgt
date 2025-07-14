@@ -1,16 +1,16 @@
-import { errorResponse, successResponse } from '@utils/responseHandler';
-import env from '../config/env';
-import { imagekitUploadImage } from '../services/upload';
-import checkImageExtension from '../utils/checkImageExtension';
-import logger from '../config/logger';
-import { userAccountValidation } from '@utils/validation';
+import { errorResponse, successResponse } from '../utils/responseHandler.js';
+import env from '../config/env.js';
+import { imagekitUploadImage } from '../services/upload.js';
+import checkImageExtension from '../utils/checkImageExtension.js';
+import logger from '../config/logger.js';
+import { userAccountValidation } from '../utils/validation.js';
 import {
   uploadIdentificationDocument,
   getAllUserAccountDocuments,
   getUserAccountDocument,
   deleteUserAccountDocument,
   documentVerificationCompleted,
-} from '@services/userAccount.service';
+} from '../services/userAccount.service.js';
 
 export const uploadDocuments = async (req, res) => {
   try {
