@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import { connectToDB} from './config/db.js';
 import apiRouter from './routes/index.js';
+import { swaggerUi, swaggerSpec } from './swagger.js';
 
 const app = express();
 const message = 'User Account Management';
@@ -18,6 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.status(200).send({ message }));
 app.use('/api', apiRouter);
+
+// Swagger docs route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 // handling non existing routes
 app.use((req, res) => {
